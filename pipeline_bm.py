@@ -727,9 +727,11 @@ class clase_pipeline:
         x=[x for x in self.dataset.columns if x not in (self.no_considerar)]
         y=[self.target]
 
-        self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(self.dataset[x],
-                                                                                self.dataset[y].values.ravel(), 
-                                                                                test_size = test, random_state=0)
+        self.X_train, self.X_test, self.Y_train, self.Y_test = train_test_split(self.dataset[x]
+                                                                                ,self.dataset[y].values.ravel()
+                                                                                ,stratify=self.dataset[y].values.ravel()
+                                                                                ,test_size = test
+                                                                                ,random_state=0)
 
         if method=='undersampling':
             under_sampler = RandomUnderSampler()
